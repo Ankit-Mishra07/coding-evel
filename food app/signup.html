@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+</head>
+<body>
+    <input type="text" placeholder="name" id="name">
+    <input type="email" placeholder="email" id="email">
+    <input type="password" placeholder="password" id="password">
+    <input type="text" placeholder="username" id="username">
+    <input type="number" placeholder="mobilenumber" id="mobile">
+    <input type="text" placeholder="description" id="des">
+    <button onclick="signup()">SignUp</button>
+</body>
+</html>
+
+<script>
+
+ async function signup() {
+
+
+    let data = {
+        name: document.getElementById("name").value,
+        email:document.getElementById("email").value,
+        password: document.getElementById("password").value,
+        username: document.getElementById("username").value,
+        mobile: document.getElementById("mobile").value,
+        description: document.getElementById("des").value
+    }
+
+    fetch(`https://masai-api-mocker.herokuapp.com/auth/register`, {
+
+        method:"POST",
+        body: JSON.stringify(data),
+        headers: {
+            "Content-Type" : "application/json"
+        }
+
+    })
+
+    .then((res) => {
+        return res.json()
+    })
+    .then((res) => {
+        console.log(res)
+    })
+    .catch((e) => {
+        console.log(e)
+    })
+
+ }
+
+</script>
